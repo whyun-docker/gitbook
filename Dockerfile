@@ -14,7 +14,7 @@ RUN wget https://mirrors.huaweicloud.com/nodejs/v${NODE_VERSION}/node-v${NODE_VE
 RUN mkdir -p /usr/local/node && tar -zxvf node-v${NODE_VERSION}-linux-x64.tar.gz -C /usr/local/node
 ENV PATH="/usr/local/node/node-v${NODE_VERSION}-linux-x64/bin/:${PATH}"
 
-RUN npm config set registry https://mirrors.huaweicloud.com/repository/npm/
+RUN npm config set registry https://registry.npmmirror.com
 RUN npm install gitbook-cli -g
 RUN gitbook fetch  3.2.3
 
