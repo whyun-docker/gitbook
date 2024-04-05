@@ -13,6 +13,7 @@ RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
 SHELL ["/bin/bash", "-c"]
 ARG NPM_REGISTRY=https://registry.npmmirror.com
 ARG NPM_MIRROR=https://npmmirror.com
+ARG TARGETARCH
 RUN if [ "$TARGETARCH" = "arm64" ] ; then \
     export ARCH=arm64 ; \
   elif [ "$TARGETARCH" = "arm" ] ; then \
