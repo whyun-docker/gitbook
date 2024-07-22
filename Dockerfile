@@ -34,7 +34,7 @@ RUN if [ "$TARGETARCH" = "arm64" ] ; then \
   && ln -s /usr/local/bin/node /usr/local/bin/nodejs \
   && npm config set registry ${NPM_REGISTRY}
 
-RUN which node ; node -v; npm install gitbook-cli svgexport -g
+RUN which node ; node -v; npm install gitbook-cli -g
 RUN gitbook fetch  3.2.3
 
 RUN useradd -ms /bin/bash gitbook
