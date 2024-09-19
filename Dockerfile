@@ -1,5 +1,5 @@
 FROM lscr.io/linuxserver/calibre:latest  AS build-stage
-ENV NODE_VERSION=10.24.1
+
 ENV DEBIAN_FRONTEND noninteractive
 RUN ebook-convert --version
 RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
@@ -13,6 +13,7 @@ RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
 SHELL ["/bin/bash", "-c"]
 ARG NPM_REGISTRY=https://registry.npmmirror.com
 ARG NPM_MIRROR=https://npmmirror.com
+ENV NODE_VERSION=20.17.0
 ARG TARGETARCH
 RUN if [ "$TARGETARCH" = "arm64" ] ; then \
     export ARCH=arm64 ; \
@@ -34,11 +35,10 @@ RUN if [ "$TARGETARCH" = "arm64" ] ; then \
   && ln -s /usr/local/bin/node /usr/local/bin/nodejs \
   && npm config set registry ${NPM_REGISTRY}
 
-RUN which node ; node -v; npm install gitbook-cli -g
-RUN gitbook fetch  3.2.3
+RUN which node ; node -v; npm install @whyun/gitbook -g
 
 RUN useradd -ms /bin/bash gitbook
 RUN chown gitbook:gitbook -R /opt
 
 USER gitbook
-RUN gitbook current
+RUN gitbook help
