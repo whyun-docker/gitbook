@@ -6,7 +6,7 @@ RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
   && sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
   && apt-get update \
   && apt-get install --force-yes --no-install-recommends curl fonts-wqy-microhei \
-  libgl1-mesa-glx  libegl1 libxkbcommon0 libopengl0 -y \
+  libglx-mesa0  libegl1 libxkbcommon0 libopengl0 -y \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/
 
